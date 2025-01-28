@@ -34,8 +34,14 @@ def run(options: RecognizerOptions):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO, format='[%(asctime)s][%(levelname)s]:%(message)s')
+    logging.basicConfig(level=logging.INFO,
+                        format='[%(asctime)s][%(levelname)s]:%(message)s',
+                        handlers=[
+                            logging.FileHandler("recognizer_stream.log"),
+                            logging.StreamHandler()
+                        ])
     logging.info("Running speechcenter streaming...")
     command_line_options = parse_csr_commandline()
     command_line_options.check()
     run(command_line_options)
+
